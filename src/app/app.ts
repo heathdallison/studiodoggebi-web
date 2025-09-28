@@ -1,12 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MastheadComponent } from './components/masthead/masthead.component';
+import { NavComponent } from './components/nav/nav.component';
+import { BodyComponent } from './components/body/body.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, MastheadComponent, NavComponent, BodyComponent],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
-export class App {
-  protected readonly title = signal('web');
-}
+export class AppComponent {}

@@ -1,0 +1,40 @@
+:root{
+  --sd-black:#000;
+  --sd-white:#fff;
+  --sd-tan:#cbb893;
+  --sd-orange:#d68c1d;
+  --sd-font: ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--sd-font);
+  background: var(--sd-tan);
+  color: #222;
+}
+
+.sd-masthead{
+  background: var(--sd-black);
+  color: var(--sd-white);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+
+.sd-stage{
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sd-hello{
+  color: var(--sd-orange);
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight: 800;
+  text-align: center;
+}

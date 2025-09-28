@@ -1,12 +1,36 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
+import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
+
+import { DOMAIN_CONFIG } from './config/domain-config.token';
+import { DomainConfig } from './types/section';
+
+const domainConfig: DomainConfig = {
+  defaultSection: 'studiodoggebi',
+  order: ['studiodoggebi', 'legendarysisters'],
+  sections: {
+    studiodoggebi: {
+      id: 'studiodoggebi',
+      label: 'Studio Doggebi',
+      masthead: 'Studio Doggebi, Inc.',
+      path: '/studiodoggebi',
+      domain: 'LegendarySisters.com'
+    },
+    legendarysisters: {
+      id: 'legendarysisters',
+      label: 'Sisters',
+      masthead: 'Legendary Sisters',
+      path: '/legendarysisters',
+      domain: 'StudioDoggebi.com'
+    }
+  }
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes)
+    provideRouter(routes),
+    provideHttpClient(),
+    { provide: DOMAIN_CONFIG, useValue: domainConfig }
   ]
 };
