@@ -19,7 +19,7 @@ export class LayoutService {
   nav = signal<{ label: string; url: string; disabled: boolean }[]>(
     this.cfg.order.map(id => ({
       label: this.cfg.sections[id].label,
-      url:   this.cfg.sections[id].path,
+      url: id === this._section() ? '/' : `https://www.${this.cfg.sections[id].domain}`,
       disabled: id === this._section()
     }))
   );
@@ -40,7 +40,7 @@ export class LayoutService {
       this.nav.set(
         this.cfg.order.map(id => ({
           label: this.cfg.sections[id].label,
-          url:   this.cfg.sections[id].path,
+          url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
           disabled: id === current
         }))
       );

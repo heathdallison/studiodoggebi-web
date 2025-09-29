@@ -8,13 +8,14 @@ import { LayoutService } from '../../services/layout.service';
   standalone: true,
   imports: [RouterLink, NgFor, NgClass],
   template: `
-    <nav class="sd-nav">
-      <a *ngFor="let item of layout.nav()"
-         [routerLink]="item.url"
-         [ngClass]="{ active: item.disabled, disabled: item.disabled }">
-        {{ item.label }}
-      </a>
-    </nav>
+<nav class="sd-nav">
+  <a *ngFor="let item of layout.nav()"
+     [routerLink]="item.url?.startsWith('/') ? item.url : null"
+     [attr.href]="!item.url?.startsWith('/') ? item.url : null"
+     [ngClass]="{ active: item.disabled, disabled: item.disabled }">
+    {{ item.label }}
+  </a>
+</nav>
   `,
   styles: [`
     .sd-nav{ display:flex; gap:16px; justify-content:center;
@@ -25,5 +26,5 @@ import { LayoutService } from '../../services/layout.service';
   `]
 })
 export class NavComponent {
-  constructor(public layout: LayoutService) {}
+  constructor(public layout: LayoutService) { }
 }
