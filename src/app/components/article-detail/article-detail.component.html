@@ -1,1 +1,25 @@
-<p>article-detail works!</p>
+<main class="sd-article-detail">
+  <section *ngIf="article; else notFound">
+    <header>
+      <h1>{{ article.title }}</h1>
+      <p class="excerpt">{{ article.excerpt }}</p>
+      <p class="meta">
+        <span>By {{ article.author }}</span> |
+        <span>{{ article.published }}</span>
+      </p>
+    </header>
+
+    <figure *ngIf="article.image">
+      <img [src]="article.image" [alt]="article.title" />
+    </figure>
+
+    <article [innerHTML]="article.content"></article>
+  </section>
+
+  <ng-template #notFound>
+    <section class="not-found">
+      <h2>Article not found</h2>
+      <p>We couldn’t locate this story. Try a different link or head back to the homepage.</p>
+    </section>
+  </ng-template>
+</main>

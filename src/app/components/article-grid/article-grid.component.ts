@@ -5,24 +5,24 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'sd-article-grid',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './article-grid.component.html',
-  styleUrls: ['./article-grid.component.scss']
+    selector: 'sd-article-grid',
+    standalone: true,
+    imports: [CommonModule, RouterModule],
+    templateUrl: './article-grid.component.html',
+    styleUrls: ['./article-grid.component.scss']
 })
 export class ArticleGridComponent implements OnInit {
-  articles: ArticleSummary[] = [];
+    articles: ArticleSummary[] = [];
 
-  constructor(
-    private articleService: ArticleService,
-    private layoutInfo: LayoutInfoService
-  ) {}
+    constructor(
+        private articleService: ArticleService,
+        private layoutInfo: LayoutInfoService
+    ) { }
 
-ngOnInit(): void {
-  const brand = this.layoutInfo.currentSection;
-  console.log('[layoutInfo.currentSection]', brand);
-  this.articles = this.articleService.getArticles(brand || 'sisters');
-}
+    ngOnInit(): void {
+        const brand = this.layoutInfo.currentSection;
+        console.log('[layoutInfo.currentSection]', brand);
+        this.articles = this.articleService.getArticles(brand || 'sisters');
+    }
 
 }

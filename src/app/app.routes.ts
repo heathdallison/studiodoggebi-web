@@ -6,6 +6,7 @@ export const routes: Routes = [
     path: 'article/:slug',
     loadComponent: () =>
       import('./components/article-detail/article-detail.component').then(m => m.SdArticleDetailComponent)
-  },
+  }
+  ,
   { path: '**', redirectTo: '' }  // fallback to '/'
 ];
