@@ -6,6 +6,18 @@
   padding: $spacing-md;
 }
 
+.centered {
+  display: flex;
+  justify-content: center;
+  padding: $spacing-xl;
+
+  > * {
+    max-width: $max-content-width;
+    width: 100%;
+  }
+}
+
+
 header {
   background-color: $color-brand-dark;
   color: $color-brand-light;
