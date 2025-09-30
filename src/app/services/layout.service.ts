@@ -1,11 +1,10 @@
 import { Injectable, signal, inject } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
-
+import { Router } from '@angular/router';
 import { DOMAIN_CONFIG } from '../config/domain-config.token';   // only the token
 import { DomainConfig, SectionId } from '../types/section';      // types live here
 
 @Injectable({ providedIn: 'root' })
+
 export class LayoutService {
   private cfg = inject<DomainConfig>(DOMAIN_CONFIG);
   private router = inject(Router);
@@ -24,26 +23,31 @@ export class LayoutService {
     }))
   );
 
-  constructor() {
-    this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
-      const current =
-        this.cfg.order.find(id => this.router.url.startsWith(this.cfg.sections[id].path))
-        ?? this.cfg.defaultSection;
-
-      this._section.set(current);
-      this.masthead.set(this.cfg.sections[current].masthead);
-
-      // altDomain = the OTHER section's domain (first one in order that isn't current)
-      const other = this.cfg.order.find(id => id !== current)!;
-      this.altDomain.set(this.cfg.sections[other].domain);
-
-      this.nav.set(
-        this.cfg.order.map(id => ({
-          label: this.cfg.sections[id].label,
-          url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
-          disabled: id === current
-        }))
-      );
-    });
+  private sectionFromHost(): SectionId {
+    const host = (typeof window !== 'undefined' ? window.location.host : '').toLowerCase();
+    const hit = this.cfg.order.find(id =>
+      host.endsWith(this.cfg.sections[id].domain.toLowerCase())
+    );
+    return hit ?? this.cfg.defaultSection;
   }
+
+constructor() {
+  const current = this.sectionFromHost();
+
+  this._section.set(current);
+  this.masthead.set(this.cfg.sections[current].masthead);
+
+  const other = this.cfg.order.find(id => id !== current)!;
+  this.altDomain.set(this.cfg.sections[other].domain);
+
+  // Nav: current brand -> '/', others -> absolute https links
+  this.nav.set(
+    this.cfg.order.map(id => ({
+      label: this.cfg.sections[id].label,
+      url:   id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
+      disabled: id === current
+    }))
+  );
+}
+
 }
