@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LayoutService } from '../../services/layout.service';
+import { LayoutInfoService } from '../../services/layout-info.service';
 
 @Component({
   selector: 'sd-body',
@@ -8,5 +8,5 @@ import { LayoutService } from '../../services/layout.service';
   styles: [`.sd-note{ text-align:center; margin-top:16px; font-size:18px; }`]
 })
 export class BodyComponent {
-  constructor(public layout: LayoutService) {}
+  constructor(public layout: LayoutInfoService) {}
 }

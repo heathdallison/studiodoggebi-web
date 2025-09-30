@@ -1,0 +1,33 @@
+import { Injectable } from '@angular/core';
+import { DOMAIN_CONFIG } from '../config/domain-config.token';
+import { inject } from '@angular/core';
+import { DomainConfig, SectionId } from '../types/section';
+
+@Injectable({ providedIn: 'root' })
+export class LayoutInfoService {
+  private cfg = inject<DomainConfig>(DOMAIN_CONFIG);
+
+  readonly currentSection: SectionId;
+  readonly masthead: string;
+  readonly altDomain: string;
+  readonly nav: { label: string; url: string; disabled: boolean }[];
+
+  constructor() {
+    const host = window.location.hostname.toLowerCase();
+    const current = this.cfg.order.find(id =>
+      host.endsWith(this.cfg.sections[id].domain.toLowerCase())
+    ) ?? this.cfg.defaultSection;
+
+    this.currentSection = current;
+    this.masthead = this.cfg.sections[current].masthead;
+
+    const other = this.cfg.order.find(id => id !== current)!;
+    this.altDomain = this.cfg.sections[other].domain;
+
+    this.nav = this.cfg.order.map(id => ({
+      label: this.cfg.sections[id].label,
+      url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
+      disabled: id === current
+    }));
+  }
+}
