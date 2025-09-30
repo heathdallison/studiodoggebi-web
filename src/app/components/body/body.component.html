@@ -1,3 +1,7 @@
-<main class="body-content">
+<ng-container *ngIf="isArticleView; else grid">
+  <sd-article-detail />
+</ng-container>
+
+<ng-template #grid>
   <sd-article-grid />
-</main>
+</ng-template>

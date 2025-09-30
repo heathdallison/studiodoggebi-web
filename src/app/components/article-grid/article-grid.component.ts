@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService, ArticleSummary } from '@services/articleservice';
+import { ArticleService, ArticleSummary } from '@services/article.service';
 import { LayoutInfoService } from '@services/layout-info.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
