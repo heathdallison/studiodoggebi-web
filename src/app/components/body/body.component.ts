@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { LayoutInfoService } from '../../services/layout-info.service';
+import { ArticleGridComponent } from '../article-grid/article-grid.component';
 
 @Component({
   selector: 'sd-body',
   standalone: true,
-  templateUrl: './body.component.html'
+  imports: [ArticleGridComponent],
+  templateUrl: './body.component.html',
+  styleUrls: ['./body.component.scss']
 })
-
-export class BodyComponent {
-  constructor(public layout: LayoutInfoService) {}
-}
+export class BodyComponent {}

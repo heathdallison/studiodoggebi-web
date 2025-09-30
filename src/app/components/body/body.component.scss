@@ -1,0 +1,6 @@
+@use '../../styles/variables' as *;
+
+.body-content {
+  padding: $spacing-xl;
+  background-color: $color-bg;
+}
