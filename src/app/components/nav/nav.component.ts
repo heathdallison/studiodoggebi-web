@@ -1,14 +1,28 @@
 import { Component } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { DomainConfigService, SiteConfig } from '@services/domain-config.service';
 
 @Component({
   selector: 'sd-nav',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   template: `
     <nav class="sd-nav">
-      <a class="nav-button active" [href]="siteConfig.activeHref">{{ siteConfig.activeLabel }}</a>
-      <span class="nav-button">{{ siteConfig.inactiveLabel }}</span>
+      <ng-container *ngFor="let button of siteConfig.buttons">
+        <a
+          *ngIf="button.isActive"
+          class="nav-button active"
+          [href]="button.href"
+        >
+          {{ button.label }}
+        </a>
+        <span
+          *ngIf="!button.isActive"
+          class="nav-button"
+        >
+          {{ button.label }}
+        </span>
+      </ng-container>
     </nav>
   `
 })

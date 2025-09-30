@@ -1,26 +1,21 @@
 .sd-nav {
   display: flex;
+  gap: 16px;
   justify-content: center;
-  gap: 1rem;
-  padding: 1rem 0;
-  background-color: var(--nav-bg, #f5f5f5);
+  padding: 10px 0 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.sd-nav-button {
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: var(--nav-color, #333);
-  transition: color 0.2s ease;
+.nav-button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #222;
+  pointer-events: none;
+}
 
-  &:hover {
-    color: var(--nav-hover, #0078d4);
-  }
-
-  &.active {
-    font-weight: bold;
-    border-bottom: 2px solid var(--nav-active, #0078d4);
-  }
+.nav-button.active {
+  background: #000;
+  color: #fff;
+  pointer-events: auto;
 }
