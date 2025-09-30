@@ -1,7 +1,9 @@
 // 🎨 Color Palette
 
 $color-bg: #d8c8a1;              // neutral background
+$color-bg-light: #f9f9f9;        // light background for cards, panels, etc.
 $color-text: #222;               // base text
+$color-text-muted: #666;         // muted text for excerpts, secondary content
 $color-accent: #d17f24;          // accent (e.g. headlines, highlights)
 $color-brand-dark: #000;         // brand dark (e.g. masthead, active nav)
 $color-brand-light: #fff;        // brand light (e.g. masthead text)
@@ -40,3 +42,9 @@ $z-base: 0;
 $z-header: 100;
 $z-overlay: 1000;
 $z-modal: 2000;
+
+
+// 🧩 Radius
+
+$radius-sm: 4px;                 // small border radius for images, buttons
+$radius-md: 8px;                 // medium border radius for cards, panels
