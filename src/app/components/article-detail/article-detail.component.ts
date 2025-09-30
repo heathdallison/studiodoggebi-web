@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService, ArticleDetail } from '@services/article.service';
 import { LayoutInfoService } from '@services/layout-info.service';
@@ -7,7 +6,6 @@ import { LayoutInfoService } from '@services/layout-info.service';
 @Component({
   selector: 'sd-article-detail',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './article-detail.component.html',
   styleUrls: ['./article-detail.component.scss']
 })
@@ -21,7 +19,10 @@ export class ArticleDetailComponent {
   ) {
     const slug = this.route.snapshot.paramMap.get('slug');
     const brand = this.layoutInfo.currentSection;
+
+    console.log('[ArticleDetail] slug:', slug, 'brand:', brand);
+
     this.article = this.articleService.getArticleBySlug(brand, slug ?? '');
-    console.log('[ArticleDetail] slug:', slug, 'brand:', brand, 'article:', this.article);
+    console.log('[ArticleDetail] article:', this.article);
   }
 }

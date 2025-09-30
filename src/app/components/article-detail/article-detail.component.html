@@ -1,20 +1,22 @@
 <main class="sd-article-detail">
-  <section *ngIf="article; else notFound">
-    <header>
-      <h1>{{ article.title }}</h1>
-      <p class="excerpt">{{ article.excerpt }}</p>
-      <p class="meta">
-        <span>By {{ article.author }}</span> |
-        <span>{{ article.published }}</span>
-      </p>
-    </header>
+  <ng-container *ngIf="article as a; else notFound">
+    <section>
+      <header>
+        <h1>{{ a.title }}</h1>
+        <p class="excerpt">{{ a.excerpt }}</p>
+        <p class="meta">
+          <span *ngIf="a.author">By {{ a.author }}</span> |
+          <span>{{ a.published }}</span>
+        </p>
+      </header>
 
-    <figure *ngIf="article.image">
-      <img [src]="article.image" [alt]="article.title" />
-    </figure>
+      <figure *ngIf="a.image">
+        <img [src]="a.image" [alt]="a.title" />
+      </figure>
 
-    <article [innerHTML]="article.content"></article>
-  </section>
+      <article [innerHTML]="a.content"></article>
+    </section>
+  </ng-container>
 
   <ng-template #notFound>
     <section class="not-found">
