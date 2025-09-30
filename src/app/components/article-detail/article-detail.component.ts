@@ -11,7 +11,7 @@ import { LayoutInfoService } from '@services/layout-info.service';
   templateUrl: './article-detail.component.html',
   styleUrls: ['./article-detail.component.scss']
 })
-export class SdArticleDetailComponent {
+export class ArticleDetailComponent {
   article: ArticleDetail | null = null;
 
   constructor(
