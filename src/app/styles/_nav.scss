@@ -1,0 +1,26 @@
+.sd-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  background-color: var(--nav-bg, #f5f5f5);
+}
+
+.sd-nav-button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--nav-color, #333);
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--nav-hover, #0078d4);
+  }
+
+  &.active {
+    font-weight: bold;
+    border-bottom: 2px solid var(--nav-active, #0078d4);
+  }
+}

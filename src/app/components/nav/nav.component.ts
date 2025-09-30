@@ -8,7 +8,7 @@ import { DomainConfigService, SiteConfig } from '@services/domain-config.service
 @Component({
   selector: 'sd-nav',
   standalone: true,
-  imports: [RouterLink, NgFor, NgClass, NgIf],
+  imports: [],
   template: `
 <nav class="sd-nav">
   <!-- Active domain button (not a link) -->
