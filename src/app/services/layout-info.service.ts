@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DOMAIN_CONFIG } from '../config/domain-config.token';
-import { inject } from '@angular/core';
 import { DomainConfig, SectionId } from '../types/section';
 
 @Injectable({ providedIn: 'root' })
@@ -20,9 +19,10 @@ export class LayoutInfoService {
   constructor() {
     const host = window.location.hostname.toLowerCase();
 
-    const current = this.cfg.order.find(id =>
-      host.endsWith(this.cfg.sections[id].domain.toLowerCase())
-    ) ?? this.cfg.defaultSection;
+    const current = this.cfg.order.find(id => {
+      const domain = this.cfg.sections[id].domain.toLowerCase();
+      return host === domain || host === `www.${domain}`;
+    }) ?? this.cfg.defaultSection;
 
     this.currentSection = current;
     this.masthead = this.cfg.sections[current].masthead;
@@ -36,7 +36,6 @@ export class LayoutInfoService {
       disabled: id === current
     }));
 
-    // ✅ Brand flags
     this.isLegendary = current === 'legendarysisters';
     this.isDoggebi = current === 'studiodoggebi';
     this.flags = {

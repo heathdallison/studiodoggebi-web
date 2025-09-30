@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService, ArticleDetail } from '@services/article.service';
@@ -7,7 +8,8 @@ import { LayoutInfoService } from '@services/layout-info.service';
   selector: 'sd-article-detail',
   standalone: true,
   templateUrl: './article-detail.component.html',
-  styleUrls: ['./article-detail.component.scss']
+  styleUrls: ['./article-detail.component.scss'],
+  imports: [CommonModule]
 })
 export class ArticleDetailComponent {
   article: ArticleDetail | null = null;
