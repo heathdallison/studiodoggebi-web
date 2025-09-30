@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgFor, NgClass, NgIf } from '@angular/common';
+import { NgFor, NgClass } from '@angular/common';
 import { LayoutService } from '../../services/layout.service';
+import { DomainConfigService, SiteConfig } from '../../services/domain-config.service';
 
 @Component({
   selector: 'sd-nav',
@@ -15,16 +16,18 @@ import { LayoutService } from '../../services/layout.service';
      [ngClass]="{ active: item.disabled, disabled: item.disabled }">
     {{ item.label }}
   </a>
+  <a [href]="siteConfig.navLink.href">{{ siteConfig.navLink.label }}</a>
 </nav>
   `,
-  styles: [`
-    .sd-nav{ display:flex; gap:16px; justify-content:center;
-             padding:10px 0 12px; border-bottom:1px solid rgba(0,0,0,.2); }
-    .sd-nav a{ padding:6px 10px; border-radius:6px; text-decoration:none; color:#222; }
-    .sd-nav a.active{ background:#000; color:#fff; }   /* invert current */
-    .sd-nav a.disabled{ pointer-events:none; opacity:1; } /* current link not clickable */
-  `]
+  styles: [/* same styles */]
 })
 export class NavComponent {
-  constructor(public layout: LayoutService) { }
+  siteConfig: SiteConfig;
+
+  constructor(
+    public layout: LayoutService,
+    private domainService: DomainConfigService
+  ) {
+    this.siteConfig = this.domainService.getConfig();
+  }
 }
