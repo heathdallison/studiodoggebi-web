@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 
 export interface SiteConfig {
   masthead: string;
-  buttons: {
-    label: string;
-    href: string;
-    isActive: boolean;
-  }[];
+  lsIsActive: boolean;
+  sdIsActive: boolean;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -18,18 +15,8 @@ export class DomainConfigService {
 
     return {
       masthead: isLegendary ? 'Legendary Sisters' : 'Studio Doggebi',
-      buttons: [
-        {
-          label: 'Legendary Sisters',
-          href: 'https://legendarysisters.com',
-          isActive: isLegendary
-        },
-        {
-          label: 'Studio Doggebi',
-          href: 'https://studiodoggebi.com',
-          isActive: !isLegendary
-        }
-      ]
+      lsIsActive: isLegendary,
+      sdIsActive: !isLegendary
     };
   }
 }
