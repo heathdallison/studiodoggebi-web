@@ -1,14 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/app",
-    "baseUrl": "./",
-    "typeRoots": ["node_modules/@types"],
-    "types": ["node", "dom"],
-    "paths": {
-      "@services/*": ["src/app/services/*"],
-      "@components/*": ["src/app/components/*"]
-    }
+    "outDir": "./out-tsc/app"
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts"]
