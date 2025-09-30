@@ -12,8 +12,14 @@ export class LayoutInfoService {
   readonly altDomain: string;
   readonly nav: { label: string; url: string; disabled: boolean }[];
 
+  // ✅ Brand flags for conditional logic
+  readonly isLegendary: boolean;
+  readonly isDoggebi: boolean;
+  readonly flags: { lsIsActive: boolean; sdIsActive: boolean };
+
   constructor() {
     const host = window.location.hostname.toLowerCase();
+
     const current = this.cfg.order.find(id =>
       host.endsWith(this.cfg.sections[id].domain.toLowerCase())
     ) ?? this.cfg.defaultSection;
@@ -29,5 +35,13 @@ export class LayoutInfoService {
       url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
       disabled: id === current
     }));
+
+    // ✅ Brand flags
+    this.isLegendary = current === 'legendarysisters';
+    this.isDoggebi = current === 'studiodoggebi';
+    this.flags = {
+      lsIsActive: this.isLegendary,
+      sdIsActive: this.isDoggebi
+    };
   }
 }

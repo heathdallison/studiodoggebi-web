@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
-import { DomainConfigService, SiteConfig } from '@services/domain-config.service';
+import { LayoutInfoService } from '@services/layout-info.service';
 
 @Component({
   selector: 'sd-nav',
@@ -9,9 +9,17 @@ import { DomainConfigService, SiteConfig } from '@services/domain-config.service
   templateUrl: './nav.component.html'
 })
 export class NavComponent {
-  siteConfig: SiteConfig;
+  siteConfig: {
+    masthead: string;
+    lsIsActive: boolean;
+    sdIsActive: boolean;
+  };
 
-  constructor(private domainService: DomainConfigService) {
-    this.siteConfig = this.domainService.getConfig();
+  constructor(private layoutInfo: LayoutInfoService) {
+    this.siteConfig = {
+      masthead: this.layoutInfo.masthead,
+      lsIsActive: this.layoutInfo.flags.lsIsActive,
+      sdIsActive: this.layoutInfo.flags.sdIsActive
+    };
   }
 }
