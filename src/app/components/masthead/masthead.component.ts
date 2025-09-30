@@ -4,11 +4,7 @@ import { DomainConfigService, SiteConfig } from '@services/domain-config.service
 @Component({
   selector: 'sd-masthead',
   standalone: true,
-  template: `
-    <header class="sd-masthead">
-      <h1>{{ siteConfig.masthead }}</h1>
-    </header>
-  `,
+  templateUrl: './masthead.component.html',
   styles: [`
     .sd-masthead {
       text-align: center;
