@@ -16,7 +16,7 @@ export interface ArticleDetail extends ArticleSummary {
 @Injectable({ providedIn: 'root' })
 export class ArticleService {
   private mockFeeds: Record<string, ArticleDetail[]> = {
-    sisters: [
+    legendarysisters: [
       {
         slug: 'sisters-unite',
         title: 'Sisters Unite',
@@ -36,7 +36,7 @@ export class ArticleService {
         author: 'L. Sister'
       }
     ],
-    doggebi: [
+    studiodoggebi: [
       {
         slug: 'doggebi-rising',
         title: 'Doggebi Rising',
@@ -56,7 +56,7 @@ export class ArticleService {
         author: 'J. Doggebi'
       }
     ],
-    hero: [
+    basicherostuff: [
       {
         slug: 'hero-origins',
         title: 'Hero Origins',

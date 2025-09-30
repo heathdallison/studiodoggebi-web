@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-article-grid',
+  selector: 'sd-article-grid',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './article-grid.component.html',
@@ -19,8 +19,10 @@ export class ArticleGridComponent implements OnInit {
     private layoutInfo: LayoutInfoService
   ) {}
 
-  ngOnInit(): void {
-    const brand = this.layoutInfo.currentSection;
-    this.articles = this.articleService.getArticles(brand);
-  }
+ngOnInit(): void {
+  const brand = this.layoutInfo.currentSection;
+  console.log('[layoutInfo.currentSection]', brand);
+  this.articles = this.articleService.getArticles(brand || 'sisters');
+}
+
 }
