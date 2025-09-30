@@ -1,0 +1,26 @@
+import { Component, OnInit } from '@angular/core';
+import { ArticleService, ArticleSummary } from '@services/articleservice';
+import { LayoutInfoService } from '@services/layout-info.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-article-grid',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  templateUrl: './article-grid.component.html',
+  styleUrls: ['./article-grid.component.scss']
+})
+export class ArticleGridComponent implements OnInit {
+  articles: ArticleSummary[] = [];
+
+  constructor(
+    private articleService: ArticleService,
+    private layoutInfo: LayoutInfoService
+  ) {}
+
+  ngOnInit(): void {
+    const brand = this.layoutInfo.currentSection;
+    this.articles = this.articleService.getArticles(brand);
+  }
+}
