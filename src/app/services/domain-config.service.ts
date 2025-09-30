@@ -15,8 +15,8 @@ export class DomainConfigService {
 
     return {
       masthead: isLegendary ? 'Legendary Sisters' : 'Studio Doggebi',
-      lsIsActive: isLegendary,
-      sdIsActive: !isLegendary
+      lsIsActive: !isLegendary, // LS is active when we're on SD
+      sdIsActive: isLegendary   // SD is active when we're on LS
     };
   }
 }

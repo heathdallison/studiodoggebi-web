@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { DomainConfigService, SiteConfig } from '@services/domain-config.service';
 
 @Component({
   selector: 'sd-nav',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   template: `
     <nav class="sd-nav">
       <a
