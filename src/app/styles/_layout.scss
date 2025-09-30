@@ -1,0 +1,20 @@
+@use './variables' as *;
+
+.container {
+  max-width: $max-content-width;
+  margin-inline: auto;
+  padding: $spacing-md;
+}
+
+header {
+  background-color: $color-brand-dark;
+  color: $color-brand-light;
+  text-align: center;
+  padding: $spacing-md;
+}
+
+header h1 {
+  font-size: $font-size-xl;
+  margin: 0;
+  line-height: $line-height-tight;
+}

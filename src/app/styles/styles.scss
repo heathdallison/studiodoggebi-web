@@ -1,4 +1,6 @@
 @use './variables' as *;
-@use './globals';
+@use './reset';
+@use './base';
+@use './helpers';
+@use './layout';
 @use './nav';
-@use './masthead';

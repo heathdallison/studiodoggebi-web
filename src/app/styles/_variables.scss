@@ -1,18 +1,42 @@
-// Color palette
-$color-bg-tan: #d8c8a1;         // page background
-$color-accent-orange: #d17f24;  // headline / accents
-$color-masthead-bg: #000;       // masthead & active nav
-$color-masthead-text: #fff;
-$color-text-base: #222;
+// 🎨 Color Palette
 
-// Typography
-$font-family-base: 'Segoe UI', Roboto, sans-serif;
+$color-bg: #d8c8a1;              // neutral background
+$color-text: #222;               // base text
+$color-accent: #d17f24;          // accent (e.g. headlines, highlights)
+$color-brand-dark: #000;         // brand dark (e.g. masthead, active nav)
+$color-brand-light: #fff;        // brand light (e.g. masthead text)
+
+
+// ✍️ Typography
+
+$font-family-sans: 'Segoe UI', Roboto, sans-serif;
+
 $font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-md: 18px;
+$font-size-lg: 24px;
+$font-size-xl: 32px;
+
 $line-height-base: 1.5;
+$line-height-tight: 1.25;
+$line-height-loose: 1.75;
 
-// Layout / spacing
+
+// 📐 Spacing & Layout
+
+$spacing-xxs: 0.25rem;
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
 $max-content-width: 60ch;
-$spacing-unit: 1rem;
 
-// Z-index
+
+// 🧱 Z-Index
+
+$z-base: 0;
 $z-header: 100;
+$z-overlay: 1000;
+$z-modal: 2000;

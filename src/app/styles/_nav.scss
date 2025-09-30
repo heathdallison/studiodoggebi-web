@@ -1,21 +1,22 @@
+@use './variables' as *;
+
 .sd-nav {
   display: flex;
-  gap: 16px;
+  gap: $spacing-md;
   justify-content: center;
-  padding: 10px 0 12px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-block: $spacing-sm $spacing-md;
+  border-bottom: 1px solid rgba($color-text, 0.2);
 }
 
 .nav-button {
-  padding: 6px 10px;
+  padding: $spacing-xs $spacing-sm;
   border-radius: 6px;
   text-decoration: none;
-  color: #222;
-  pointer-events: none;
+  color: $color-text;
 }
 
 .nav-button.active {
-  background: #000;
-  color: #fff;
-  pointer-events: auto;
+  background-color: $color-brand-dark;
+  color: $color-brand-light;
+  pointer-events: none;
 }

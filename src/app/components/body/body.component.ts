@@ -4,9 +4,9 @@ import { LayoutInfoService } from '../../services/layout-info.service';
 @Component({
   selector: 'sd-body',
   standalone: true,
-  templateUrl: './body.component.html',
-  styles: [`.sd-note{ text-align:center; margin-top:16px; font-size:18px; }`]
+  templateUrl: './body.component.html'
 })
+
 export class BodyComponent {
   constructor(public layout: LayoutInfoService) {}
 }
