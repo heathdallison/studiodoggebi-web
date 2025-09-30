@@ -2,6 +2,10 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', children: [] },  // root stays at '/'
-  { path: '**', redirectTo: '' }                   // fallback to '/'
+  {
+    path: 'article/:slug',
+    loadComponent: () =>
+      import('./components/article-detail/article-detail.component').then(m => m.SdArticleDetailComponent)
+  },
+  { path: '**', redirectTo: '' }  // fallback to '/'
 ];
-
