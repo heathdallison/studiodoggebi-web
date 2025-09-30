@@ -19,11 +19,14 @@ export class ArticleDetailComponent {
     private articleService: ArticleService,
     private layoutInfo: LayoutInfoService
   ) {
-    this.route.params.subscribe(params => {
-      const slug = params['slug'];
-      const brand = this.layoutInfo.currentSection || 'legendarysisters';
-      this.article = this.articleService.getArticleBySlug(brand, slug);
-      console.log('[ArticleDetail] slug:', slug, 'brand:', brand, 'article:', this.article);
-    });
+this.route.params.subscribe(params => {
+  const slug = params['slug'];
+  const brand = this.layoutInfo.currentSection;
+  console.log('[ArticleDetail] slug:', slug, 'brand:', brand);
+
+  this.article = this.articleService.getArticleBySlug(brand, slug);
+  console.log('[ArticleDetail] article:', this.article);
+});
+
   }
 }
