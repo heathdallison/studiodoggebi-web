@@ -81,3 +81,24 @@ img {
   padding: $spacing-unit;
   font-size: clamp(20px, 3vw, 32px);
 }
+
+.sd-nav {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 10px 0 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.nav-button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #222;
+}
+
+.nav-button.active {
+  background: #000;
+  color: #fff;
+  pointer-events: none;
+}

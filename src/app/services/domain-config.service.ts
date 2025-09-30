@@ -1,12 +1,10 @@
-// src/app/services/domain-config.service.ts
 import { Injectable } from '@angular/core';
 
 export interface SiteConfig {
   masthead: string;
-  navLink: {
-    label: string;
-    href: string;
-  };
+  currentLabel: string;
+  otherLabel: string;
+  otherHref: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -14,17 +12,15 @@ export class DomainConfigService {
   private readonly configMap: Record<string, SiteConfig> = {
     'studiodoggebi.com': {
       masthead: 'Studio Doggebi',
-      navLink: {
-        label: 'Legendary Sisters',
-        href: 'https://www.legendarysisters.com',
-      },
+      currentLabel: 'Studio Doggebi',
+      otherLabel: 'Legendary Sisters',
+      otherHref: 'https://www.legendarysisters.com',
     },
     'legendarysisters.com': {
       masthead: 'Legendary Sisters',
-      navLink: {
-        label: 'Studio Doggebi',
-        href: 'https://www.studiodoggebi.com',
-      },
+      currentLabel: 'Legendary Sisters',
+      otherLabel: 'Studio Doggebi',
+      otherHref: 'https://www.studiodoggebi.com',
     },
   };
 
