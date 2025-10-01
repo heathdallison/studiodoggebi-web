@@ -117,7 +117,7 @@ import { DomainConfig, SectionId } from '../types/section';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutInfoService {
-  private cfg = inject<DomainConfig>(DOMAIN_CONFIG);
+  private cfg: DomainConfig;
 
   readonly currentSection: SectionId;
   readonly masthead: string;
@@ -129,6 +129,8 @@ export class LayoutInfoService {
   readonly flags: { lsIsActive: boolean; sdIsActive: boolean };
 
   constructor() {
+    this.cfg = inject(DOMAIN_CONFIG); // ✅ now inside valid context
+
     const host = window.location.hostname.toLowerCase();
     console.log('[LayoutInfo] Host:', host);
 
@@ -152,7 +154,8 @@ export class LayoutInfoService {
     this.nav = this.cfg.order.map(id => ({
       label: this.cfg.sections[id].label,
       url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
-      disabled: id === current
+      disabled: id === current,
+      external: id !== current // ✅ explicitly mark external links
     }));
 
     this.isLegendary = current === 'legendarysisters';

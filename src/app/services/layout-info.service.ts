@@ -9,7 +9,7 @@ export class LayoutInfoService {
   readonly currentSection: SectionId;
   readonly masthead: string;
   readonly altDomain: string;
-  readonly nav: { label: string; url: string; disabled: boolean }[];
+  readonly nav: { label: string; url: string; disabled: boolean; external: boolean }[];
 
   readonly isLegendary: boolean;
   readonly isDoggebi: boolean;

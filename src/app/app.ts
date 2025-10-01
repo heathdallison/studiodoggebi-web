@@ -15,4 +15,8 @@ export class AppComponent {
     { label: 'Studio Doggebi', url: '/', external: false },
     { label: 'Legendary Sisters', url: '/article/sisters-unite', external: false }
   ];
+  constructor() {
+    console.log('[AppComponent] nav:', this.nav);
+  }
+
 }
