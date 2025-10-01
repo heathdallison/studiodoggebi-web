@@ -41,7 +41,8 @@ export class LayoutInfoService {
     this.nav = this.cfg.order.map(id => ({
       label: this.cfg.sections[id].label,
       url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
-      disabled: id === current
+      disabled: id === current,
+      external: id !== current // ✅ explicitly mark external links
     }));
 
     this.isLegendary = current === 'legendarysisters';
