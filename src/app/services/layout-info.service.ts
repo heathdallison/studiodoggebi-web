@@ -30,7 +30,7 @@ export class LayoutInfoService {
     };
 
     const current = hostToSection[host] ?? this.cfg.defaultSection;
-    console.log('[LayoutInfo] Resolved section:', current);
+
 
     this.currentSection = current;
     this.masthead = this.cfg.sections[current].masthead;
@@ -40,9 +40,10 @@ export class LayoutInfoService {
 
     this.nav = this.cfg.order.map(id => ({
       label: this.cfg.sections[id].label,
-      url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
+      url: `https://www.${this.cfg.sections[id].domain}`,
       isActive: id !== current
     }));
+
 
     this.isLegendary = current === 'legendarysisters';
     this.isDoggebi = current === 'studiodoggebi';
