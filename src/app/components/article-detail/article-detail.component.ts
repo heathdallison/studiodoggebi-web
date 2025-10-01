@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService, ArticleDetail } from '@services/article.service';
 import { LayoutInfoService } from '@services/layout-info.service';
@@ -14,20 +14,19 @@ import { LayoutInfoService } from '@services/layout-info.service';
 export class ArticleDetailComponent {
   article: ArticleDetail | null = null;
 
-  constructor(
-    private route: ActivatedRoute,
-    private articleService: ArticleService,
-    private layoutInfo: LayoutInfoService
-  ) {
+  constructor() {
+    const route = inject(ActivatedRoute);
+    const articleService = inject(ArticleService);
+    const layoutInfo = inject(LayoutInfoService);
 
     console.log('[ArticleDetailComponent] Constructor fired');
 
-    const slug = this.route.snapshot.paramMap.get('slug');
-    const brand = this.layoutInfo.currentSection;
+    const slug = route.snapshot.paramMap.get('slug');
+    const brand = layoutInfo.currentSection;
 
     console.log('[ArticleDetail] slug:', slug, 'brand:', brand);
 
-    this.article = this.articleService.getArticleBySlug(brand, slug ?? '');
+    this.article = articleService.getArticleBySlug(brand, slug ?? '');
     console.log('[ArticleDetail] article:', this.article);
   }
 }
