@@ -55,12 +55,6 @@ imports: CommonModule
           <span>{{ a.published }}</span>
         </p>
       </header>
-
-      <figure *ngIf="a.image">
-        <img [src]="a.image" [alt]="a.title" />
-      </figure>
-
-      <article [innerHTML]="a.content"></article>
     </section>
   </ng-container>
 
@@ -123,69 +117,21 @@ imports: (none)
 
 === TEMPLATE: src/app/components/nav/nav.component.html ===
 <nav class="sd-nav">
-  <a
-    *ngIf="siteConfig.lsIsActive"
-    class="nav-button active"
-    href="https://legendarysisters.com"
-  >
-    Legendary Sisters
-  </a>
-  <span
-    *ngIf="!siteConfig.lsIsActive"
-    class="nav-button"
-  >
-    Legendary Sisters
-  </span>
-
-  <a
-    *ngIf="siteConfig.sdIsActive"
-    class="nav-button active"
-    href="https://studiodoggebi.com"
-  >
-    Studio Doggebi
-  </a>
-  <span
-    *ngIf="!siteConfig.sdIsActive"
-    class="nav-button"
-  >
-    Studio Doggebi
-  </span>
-</nav>
-
-=== COMPONENT: src/app/components/nav/nav.component.ts ===
-@Component -> NavComponent
-selector: sd-nav
-standalone: true
-imports: NgIf
---- template ---
-<nav class="sd-nav">
-  <a
-    *ngIf="siteConfig.lsIsActive"
-    class="nav-button active"
-    href="https://legendarysisters.com"
-  >
-    Legendary Sisters
-  </a>
-  <span
-    *ngIf="!siteConfig.lsIsActive"
-    class="nav-button"
-  >
-    Legendary Sisters
-  </span>
-
-  <a
-    *ngIf="siteConfig.sdIsActive"
-    class="nav-button active"
-    href="https://studiodoggebi.com"
-  >
-    Studio Doggebi
-  </a>
-  <span
-    *ngIf="!siteConfig.sdIsActive"
-    class="nav-button"
-  >
-    Studio Doggebi
-  </span>
+  <ng-container *ngFor="let item of layoutInfo.nav">
+    <a
+      *ngIf="!item.disabled"
+      class="nav-button active"
+      [href]="item.url"
+    >
+      {{ item.label }}
+    </a>
+    <span
+      *ngIf="item.disabled"
+      class="nav-button"
+    >
+      {{ item.label }}
+    </span>
+  </ng-container>
 </nav>
 
 === SERVICE: src/app/services/api.service.ts ===

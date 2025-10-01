@@ -1,16 +1,9 @@
 <nav class="sd-nav">
-  <ng-container *ngFor="let item of layoutInfo.nav">
-    <a
-      *ngIf="item.isActive"
-      class="nav-button active"
-      [href]="item.url"
-    >
+  <ng-container *ngFor="let item of nav">
+    <a *ngIf="!item.disabled" class="nav-button active" [href]="item.url">
       {{ item.label }}
     </a>
-    <span
-      *ngIf="!item.isActive"
-      class="nav-button"
-    >
+    <span *ngIf="item.disabled" class="nav-button">
       {{ item.label }}
     </span>
   </ng-container>

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
-import { LayoutInfoService } from '@services/layout-info.service';
+import { NgIf, NgFor } from '@angular/common';
+import { LayoutInfoService } from '../../services/layout-info.service'; // ← use relative path
 
 @Component({
   selector: 'sd-nav',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgFor],
   templateUrl: './nav.component.html'
 })
 export class NavComponent {
@@ -15,11 +15,15 @@ export class NavComponent {
     sdIsActive: boolean;
   };
 
+  nav: { label: string; url: string; disabled: boolean }[];
+
   constructor(private layoutInfo: LayoutInfoService) {
     this.siteConfig = {
       masthead: this.layoutInfo.masthead,
       lsIsActive: this.layoutInfo.flags.lsIsActive,
       sdIsActive: this.layoutInfo.flags.sdIsActive
     };
+
+    this.nav = this.layoutInfo.nav;
   }
 }
