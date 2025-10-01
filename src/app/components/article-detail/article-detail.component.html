@@ -8,7 +8,7 @@
           <span *ngIf="a.author">By {{ a.author }}</span> |
           <span>{{ a.published }}</span>
         </p>
-        <a routerLink="/" class="nav-back">← Back to articles</a>
+<a [routerLink]="['/']" class="nav-back">← Back to articles</a>
 
       </header>
     </section>

@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ArticleService, ArticleDetail } from '@services/article.service';
 import { LayoutInfoService } from '@services/layout-info.service';
+imports: [CommonModule, RouterModule]
 
 @Component({
   selector: 'sd-article-detail',
   standalone: true,
   templateUrl: './article-detail.component.html',
   styleUrls: ['./article-detail.component.scss'],
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
+
 export class ArticleDetailComponent {
   article: ArticleDetail | null = null;
 
