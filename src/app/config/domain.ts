@@ -1,7 +1,16 @@
-export default {
-  default: 'studiodoggebi',
-  sections: [
-    { id: 'studiodoggebi', label: 'Studio Doggebi', path: '/studiodoggebi', domain: 'LegendarySisters.com' },
-    { id: 'legendarysisters', label: 'Sisters', path: '/legendarysisters', domain: 'StudioDoggebi.com' }
-  ]
+export const domainConfig = {
+  order: ['studiodoggebi', 'legendarysisters'],
+  defaultSection: 'studiodoggebi',
+  sections: {
+    studiodoggebi: {
+      domain: 'LegendarySisters.com',
+      label: 'Studio Doggebi',
+      masthead: 'Studio Doggebi, Inc.'
+    },
+    legendarysisters: {
+      domain: 'StudioDoggebi.com',
+      label: 'Sisters',
+      masthead: 'Legendary Sisters, Inc.'
+    }
+  }
 } as const;
