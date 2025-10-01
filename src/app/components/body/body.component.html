@@ -1,9 +1,1 @@
-<main class="centered">
-  <ng-container *ngIf="isArticleView; else grid">
-    <sd-article-detail />
-  </ng-container>
-
-  <ng-template #grid>
-    <sd-article-grid />
-  </ng-template>
-</main>
+<router-outlet />

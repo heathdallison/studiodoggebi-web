@@ -19,6 +19,9 @@ export class ArticleDetailComponent {
     private articleService: ArticleService,
     private layoutInfo: LayoutInfoService
   ) {
+
+    console.log('[ArticleDetailComponent] Constructor fired');
+
     const slug = this.route.snapshot.paramMap.get('slug');
     const brand = this.layoutInfo.currentSection;
 
