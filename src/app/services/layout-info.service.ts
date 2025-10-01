@@ -9,7 +9,7 @@ export class LayoutInfoService {
   readonly currentSection: SectionId;
   readonly masthead: string;
   readonly altDomain: string;
-  readonly nav: { label: string; url: string; disabled: boolean }[];
+  readonly nav: { label: string; url: string; isActive: boolean }[];
 
   // ✅ Brand flags for conditional logic
   readonly isLegendary: boolean;
@@ -41,7 +41,7 @@ export class LayoutInfoService {
     this.nav = this.cfg.order.map(id => ({
       label: this.cfg.sections[id].label,
       url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
-      disabled: id === current
+      isActive: id === current
     }));
 
     this.isLegendary = current === 'legendarysisters';
