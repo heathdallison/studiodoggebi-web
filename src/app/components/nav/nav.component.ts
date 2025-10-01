@@ -1,17 +1,29 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
-import { DomainConfigService, SiteConfig } from '@services/domain-config.service';
+import { NgIf, NgFor } from '@angular/common';
+import { LayoutInfoService } from '../../services/layout-info.service'; // ← use relative path
 
 @Component({
   selector: 'sd-nav',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgFor],
   templateUrl: './nav.component.html'
 })
 export class NavComponent {
-  siteConfig: SiteConfig;
+  siteConfig: {
+    masthead: string;
+    lsIsActive: boolean;
+    sdIsActive: boolean;
+  };
 
-  constructor(private domainService: DomainConfigService) {
-    this.siteConfig = this.domainService.getConfig();
+  nav: { label: string; url: string; disabled: boolean }[];
+
+  constructor(private layoutInfo: LayoutInfoService) {
+    this.siteConfig = {
+      masthead: this.layoutInfo.masthead,
+      lsIsActive: this.layoutInfo.flags.lsIsActive,
+      sdIsActive: this.layoutInfo.flags.sdIsActive
+    };
+
+    this.nav = this.layoutInfo.nav;
   }
 }

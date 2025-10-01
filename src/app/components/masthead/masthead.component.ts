@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DomainConfigService, SiteConfig } from '@services/domain-config.service';
+import { LayoutInfoService } from '@services/layout-info.service';
 
 @Component({
   selector: 'sd-masthead',
@@ -7,9 +7,9 @@ import { DomainConfigService, SiteConfig } from '@services/domain-config.service
   templateUrl: './masthead.component.html'
 })
 export class MastheadComponent {
-  siteConfig: SiteConfig;
+  masthead: string;
 
-  constructor(private domainService: DomainConfigService) {
-    this.siteConfig = this.domainService.getConfig();
+  constructor(private layoutInfo: LayoutInfoService) {
+    this.masthead = layoutInfo.masthead;
   }
 }

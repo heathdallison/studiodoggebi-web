@@ -1,0 +1,274 @@
+# src\app\styles\styles.scss
+@use './variables' as *;
+@use './reset';
+@use './base';
+@use './helpers';
+@use './layout';
+@use './nav';
+
+
+# src\app\styles\_base.scss
+@use './variables' as *;
+
+html {
+  font-size: $font-size-base;
+}
+
+body {
+  font-family: $font-family-sans;
+  line-height: $line-height-base;
+  color: $color-text;
+  background-color: $color-bg;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+p {
+  margin-bottom: $spacing-md;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+
+# src\app\styles\_globals.scss
+@use './variables' as *;
+
+/* 🌐 Reset / Normalize */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, p, ul, ol, figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* 🧭 Global Helpers */
+.text-center {
+  text-align: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+# src\app\styles\_helpers.scss
+.text-center { text-align: center; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+# src\app\styles\_layout.scss
+@use './variables' as *;
+
+.container {
+  max-width: $max-content-width;
+  margin-inline: auto;
+  padding: $spacing-md;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  padding: $spacing-xl;
+
+  > * {
+    max-width: $max-content-width;
+    width: 100%;
+  }
+}
+
+
+header {
+  background-color: $color-brand-dark;
+  color: $color-brand-light;
+  text-align: center;
+  padding: $spacing-md;
+}
+
+header h1 {
+  font-size: $font-size-xl;
+  margin: 0;
+  line-height: $line-height-tight;
+}
+
+.sd-article-detail {
+  @extend .container;
+  padding-block: $spacing-xl;
+
+  section {
+    background-color: $color-bg-light;
+    padding: $spacing-lg;
+    border-radius: $radius-md;
+    box-shadow: 0 0 0 1px rgba($color-text, 0.1);
+  }
+
+  header {
+    img {
+      border-radius: $radius-sm;
+      margin-bottom: $spacing-md;
+    }
+
+    h1 {
+      font-size: $font-size-xl;
+      line-height: $line-height-tight;
+      margin-bottom: $spacing-sm;
+      color: $color-accent;
+    }
+
+    .excerpt {
+      font-style: italic;
+      color: $color-text-muted;
+      margin-bottom: $spacing-md;
+    }
+
+    .meta {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  .not-found {
+    text-align: center;
+    padding: $spacing-xl;
+    background-color: $color-bg-light;
+    border-radius: $radius-md;
+    box-shadow: 0 0 0 1px rgba($color-text, 0.1);
+
+    h2 {
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $color-text-muted;
+    }
+  }
+}
+
+
+# src\app\styles\_nav.scss
+@use './variables' as *;
+
+.sd-nav {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: center;
+  padding-block: $spacing-sm $spacing-md;
+  border-bottom: 1px solid rgba($color-text, 0.2);
+}
+
+.nav-button {
+  padding: $spacing-xs $spacing-sm;
+  border-radius: 6px;
+  text-decoration: none;
+  color: $color-text;
+}
+
+.nav-button.active {
+  background-color: $color-brand-dark;
+  color: $color-brand-light;
+}
+
+
+# src\app\styles\_reset.scss
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, p, ul, ol, figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+
+# src\app\styles\_variables.scss
+// 🎨 Color Palette
+
+$color-bg: #d8c8a1;              // neutral background
+$color-bg-light: #f9f9f9;        // light background for cards, panels, etc.
+$color-text: #222;               // base text
+$color-text-muted: #666;         // muted text for excerpts, secondary content
+$color-accent: #d17f24;          // accent (e.g. headlines, highlights)
+$color-brand-dark: #000;         // brand dark (e.g. masthead, active nav)
+$color-brand-light: #fff;        // brand light (e.g. masthead text)
+
+
+// ✍️ Typography
+
+$font-family-sans: 'Segoe UI', Roboto, sans-serif;
+
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-md: 18px;
+$font-size-lg: 24px;
+$font-size-xl: 32px;
+
+$line-height-base: 1.5;
+$line-height-tight: 1.25;
+$line-height-loose: 1.75;
+
+
+// 📐 Spacing & Layout
+
+$spacing-xxs: 0.25rem;
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+$max-content-width: 60ch;
+
+
+// 🧱 Z-Index
+
+$z-base: 0;
+$z-header: 100;
+$z-overlay: 1000;
+$z-modal: 2000;
+
+
+// 🧩 Radius
+
+$radius-sm: 4px;                 // small border radius for images, buttons
+$radius-md: 8px;                 // medium border radius for cards, panels
+
+

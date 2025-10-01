@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { DOMAIN_CONFIG } from '../config/domain-config.token';
-import { inject } from '@angular/core';
 import { DomainConfig, SectionId } from '../types/section';
 
 @Injectable({ providedIn: 'root' })
@@ -12,11 +11,24 @@ export class LayoutInfoService {
   readonly altDomain: string;
   readonly nav: { label: string; url: string; disabled: boolean }[];
 
+  readonly isLegendary: boolean;
+  readonly isDoggebi: boolean;
+  readonly flags: { lsIsActive: boolean; sdIsActive: boolean };
+
   constructor() {
     const host = window.location.hostname.toLowerCase();
-    const current = this.cfg.order.find(id =>
-      host.endsWith(this.cfg.sections[id].domain.toLowerCase())
-    ) ?? this.cfg.defaultSection;
+    console.log('[LayoutInfo] Host:', host);
+
+    const hostToSection: Record<string, SectionId> = {
+      'legendarysisters.com': 'legendarysisters',
+      'www.legendarysisters.com': 'legendarysisters',
+      'studiodoggebi.com': 'studiodoggebi',
+      'www.studiodoggebi.com': 'studiodoggebi',
+      'localhost': this.cfg.defaultSection,
+    };
+
+    const current = hostToSection[host] ?? this.cfg.defaultSection;
+    console.log('[LayoutInfo] Resolved section:', current);
 
     this.currentSection = current;
     this.masthead = this.cfg.sections[current].masthead;
@@ -29,5 +41,12 @@ export class LayoutInfoService {
       url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
       disabled: id === current
     }));
+
+    this.isLegendary = current === 'legendarysisters';
+    this.isDoggebi = current === 'studiodoggebi';
+    this.flags = {
+      lsIsActive: this.isLegendary,
+      sdIsActive: this.isDoggebi
+    };
   }
 }
