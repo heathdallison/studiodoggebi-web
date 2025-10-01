@@ -123,6 +123,62 @@ header h1 {
   line-height: $line-height-tight;
 }
 
+.sd-article-detail {
+  @extend .container;
+  padding-block: $spacing-xl;
+
+  section {
+    background-color: $color-bg-light;
+    padding: $spacing-lg;
+    border-radius: $radius-md;
+    box-shadow: 0 0 0 1px rgba($color-text, 0.1);
+  }
+
+  header {
+    img {
+      border-radius: $radius-sm;
+      margin-bottom: $spacing-md;
+    }
+
+    h1 {
+      font-size: $font-size-xl;
+      line-height: $line-height-tight;
+      margin-bottom: $spacing-sm;
+      color: $color-accent;
+    }
+
+    .excerpt {
+      font-style: italic;
+      color: $color-text-muted;
+      margin-bottom: $spacing-md;
+    }
+
+    .meta {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  .not-found {
+    text-align: center;
+    padding: $spacing-xl;
+    background-color: $color-bg-light;
+    border-radius: $radius-md;
+    box-shadow: 0 0 0 1px rgba($color-text, 0.1);
+
+    h2 {
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $color-text-muted;
+    }
+  }
+}
+
 
 # src\app\styles\_nav.scss
 @use './variables' as *;
