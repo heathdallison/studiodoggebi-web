@@ -4,7 +4,7 @@ import { DomainConfig, SectionId } from '../types/section';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutInfoService {
-  private cfg = inject<DomainConfig>(DOMAIN_CONFIG);
+  private cfg: DomainConfig;
 
   readonly currentSection: SectionId;
   readonly masthead: string;
@@ -16,6 +16,8 @@ export class LayoutInfoService {
   readonly flags: { lsIsActive: boolean; sdIsActive: boolean };
 
   constructor() {
+    this.cfg = inject(DOMAIN_CONFIG); // ✅ now inside valid context
+
     const host = window.location.hostname.toLowerCase();
     console.log('[LayoutInfo] Host:', host);
 

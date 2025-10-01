@@ -1,0 +1,167 @@
+# src\app\services\api.service.ts (Angular Service)
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({ providedIn: 'root' })
+export class ApiService {
+  private base = '/api'; // dev proxy maps this to your .NET API
+
+  constructor(private http: HttpClient) {}
+
+  getRoot()             { return this.http.get(`${this.base}/`,               { responseType: 'text' }); }
+  getLegendarySisters() { return this.http.get(`${this.base}/legendarysisters`, { responseType: 'text' }); }
+  getStudioDoggebi()    { return this.http.get(`${this.base}/studiodoggebi`,   { responseType: 'text' }); }
+}
+
+
+# src\app\services\article.service.ts (Angular Service)
+import { Injectable } from '@angular/core';
+
+export interface ArticleSummary {
+  slug: string;
+  title: string;
+  excerpt: string;
+  image: string;
+}
+
+export interface ArticleDetail extends ArticleSummary {
+  content: string;
+  published: string;
+  author?: string;
+}
+
+@Injectable({ providedIn: 'root' })
+export class ArticleService {
+  private mockFeeds: Record<string, ArticleDetail[]> = {
+    legendarysisters: [
+      {
+        slug: 'sisters-unite',
+        title: 'Sisters Unite',
+        excerpt: 'A rallying cry from the inked archives...',
+        image: 'https://cdn.example.com/sisters1.jpg',
+        content: 'Full article content for Sisters Unite...',
+        published: '2025-09-01',
+        author: 'L. Sister'
+      },
+      {
+        slug: 'comic-rituals',
+        title: 'Comic Rituals',
+        excerpt: 'How repetition shapes the creative flow...',
+        image: 'https://cdn.example.com/sisters2.jpg',
+        content: 'Full article content for Comic Rituals...',
+        published: '2025-09-15',
+        author: 'L. Sister'
+      }
+    ],
+    studiodoggebi: [
+      {
+        slug: 'doggebi-rising',
+        title: 'Doggebi Rising',
+        excerpt: 'A myth reborn in digital ink...',
+        image: 'https://cdn.example.com/doggebi1.jpg',
+        content: 'Full article content for Doggebi Rising...',
+        published: '2025-09-03',
+        author: 'J. Doggebi'
+      },
+      {
+        slug: 'studio-notes',
+        title: 'Studio Notes',
+        excerpt: 'Behind the scenes of the Doggebi process...',
+        image: 'https://cdn.example.com/doggebi2.jpg',
+        content: 'Full article content for Studio Notes...',
+        published: '2025-09-20',
+        author: 'J. Doggebi'
+      }
+    ],
+    basicherostuff: [
+      {
+        slug: 'hero-origins',
+        title: 'Hero Origins',
+        excerpt: 'Where the cape meets the code...',
+        image: 'https://cdn.example.com/hero1.jpg',
+        content:
+
+# src\app\services\content.service.ts (Angular Service)
+import { Injectable } from '@angular/core';
+
+export interface ContentItem {
+  id: string;
+  title: string;
+  thumbnail: string;  // URL (can be local asset for now)
+  etsyUrl: string;    // external link
+}
+
+@Injectable({ providedIn: 'root' })
+export class ContentService {
+  // stub feeds; swap with API later
+  private feeds: Record<string, ContentItem[]> = {
+    onetsy: [
+      { id: '1', title: 'Ink Study #1', thumbnail: '/assets/ink1.jpg', etsyUrl: 'https://etsy.com/listing/xxxxx' },
+      { id: '2', title: 'Ink Study #2', thumbnail: '/assets/ink2.jpg', etsyUrl: 'https://etsy.com/listing/yyyyy' },
+    ],
+    wip: [
+      { id: 'w1', title: 'WIP Sketch', thumbnail: '/assets/wip1.jpg', etsyUrl: 'https://etsy.com' }
+    ]
+  };
+
+  getFeed(key: 'onetsy' | 'wip'): ContentItem[] {
+    return this.feeds[key] ?? [];
+  }
+}
+
+
+# src\app\services\layout-info.service.ts (Angular Service)
+import { Injectable, inject } from '@angular/core';
+import { DOMAIN_CONFIG } from '../config/domain-config.token';
+import { DomainConfig, SectionId } from '../types/section';
+
+@Injectable({ providedIn: 'root' })
+export class LayoutInfoService {
+  private cfg = inject<DomainConfig>(DOMAIN_CONFIG);
+
+  readonly currentSection: SectionId;
+  readonly masthead: string;
+  readonly altDomain: string;
+  readonly nav: { label: string; url: string; disabled: boolean }[];
+
+  readonly isLegendary: boolean;
+  readonly isDoggebi: boolean;
+  readonly flags: { lsIsActive: boolean; sdIsActive: boolean };
+
+  constructor() {
+    const host = window.location.hostname.toLowerCase();
+    console.log('[LayoutInfo] Host:', host);
+
+    const hostToSection: Record<string, SectionId> = {
+      'legendarysisters.com': 'legendarysisters',
+      'www.legendarysisters.com': 'legendarysisters',
+      'studiodoggebi.com': 'studiodoggebi',
+      'www.studiodoggebi.com': 'studiodoggebi',
+      'localhost': this.cfg.defaultSection,
+    };
+
+    const current = hostToSection[host] ?? this.cfg.defaultSection;
+    console.log('[LayoutInfo] Resolved section:', current);
+
+    this.currentSection = current;
+    this.masthead = this.cfg.sections[current].masthead;
+
+    const other = this.cfg.order.find(id => id !== current)!;
+    this.altDomain = this.cfg.sections[other].domain;
+
+    this.nav = this.cfg.order.map(id => ({
+      label: this.cfg.sections[id].label,
+      url: id === current ? '/' : `https://www.${this.cfg.sections[id].domain}`,
+      disabled: id === current
+    }));
+
+    this.isLegendary = current === 'legendarysisters';
+    this.isDoggebi = current === 'studiodoggebi';
+    this.flags = {
+      lsIsActive: this.isLegendary,
+      sdIsActive: this.isDoggebi
+    };
+  }
+}
+
+
