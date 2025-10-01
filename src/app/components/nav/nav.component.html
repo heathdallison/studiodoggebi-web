@@ -1,6 +1,9 @@
 <nav class="sd-nav">
   <ng-container *ngFor="let item of nav">
-    <a *ngIf="!item.disabled" class="nav-button active" [href]="item.url">
+    <a *ngIf="!item.disabled && item.external" class="nav-button active" [href]="item.url">
+      {{ item.label }}
+    </a>
+    <a *ngIf="!item.disabled && !item.external" class="nav-button active" [routerLink]="item.url">
       {{ item.label }}
     </a>
     <span *ngIf="item.disabled" class="nav-button">

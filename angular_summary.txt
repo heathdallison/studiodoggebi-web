@@ -38,11 +38,36 @@ imports: MastheadComponent, NavComponent, BodyComponent
 <sd-nav />
 <sd-body />
 
+=== TEMPLATE: src/app/components/article-detail/article-detail.component.html ===
+<main class="sd-article-detail">
+  <ng-container *ngIf="article as a; else notFound">
+    <section>
+      <header>
+        <h1>{{ a.title }}</h1>
+        <p class="excerpt">{{ a.excerpt }}</p>
+        <p class="meta">
+          <span *ngIf="a.author">By {{ a.author }}</span> |
+          <span>{{ a.published }}</span>
+        </p>
+<a [routerLink]="['/']" class="nav-back">← Back to articles</a>
+
+      </header>
+    </section>
+  </ng-container>
+
+  <ng-template #notFound>
+    <section class="not-found">
+      <h2>Article not found</h2>
+      <p>We couldn’t locate this story. Try a different link or head back to the homepage.</p>
+    </section>
+  </ng-template>
+</main>
+
 === COMPONENT: src/app/components/article-detail/article-detail.component.ts ===
 @Component -> ArticleDetailComponent
 selector: sd-article-detail
 standalone: true
-imports: CommonModule
+imports: CommonModule, RouterModule
 --- template ---
 <main class="sd-article-detail">
   <ng-container *ngIf="article as a; else notFound">
@@ -54,6 +79,8 @@ imports: CommonModule
           <span *ngIf="a.author">By {{ a.author }}</span> |
           <span>{{ a.published }}</span>
         </p>
+<a [routerLink]="['/']" class="nav-back">← Back to articles</a>
+
       </header>
     </section>
   </ng-container>
@@ -113,6 +140,7 @@ imports: (none)
 --- template ---
 <header>
   <h1>{{ masthead }}</h1>
+  <p><em>copyright studio doggebi inc. version 0.1</em></p>
 </header>
 
 === TEMPLATE: src/app/components/nav/nav.component.html ===
