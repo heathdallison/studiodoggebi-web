@@ -97,23 +97,19 @@ imports: CommonModule, RouterModule
   </article>
 </section>
 
+=== TEMPLATE: src/app/components/body/body.component.html ===
+<router-outlet />
+
 === COMPONENT: src/app/components/body/body.component.ts ===
 @Component -> BodyComponent
 selector: sd-body
 standalone: true
-imports: CommonModule, 
-    ArticleDetailComponent, 
+imports: CommonModule,
+    RouterModule,
+    ArticleDetailComponent,
     ArticleGridComponent
 --- template ---
-<main class="centered">
-  <ng-container *ngIf="isArticleView; else grid">
-    <sd-article-detail />
-  </ng-container>
-
-  <ng-template #grid>
-    <sd-article-grid />
-  </ng-template>
-</main>
+<router-outlet />
 
 === COMPONENT: src/app/components/masthead/masthead.component.ts ===
 @Component -> MastheadComponent
