@@ -10,4 +10,9 @@ import { BodyComponent } from './components/body/body.component';
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+  nav = [
+    { label: 'Studio Doggebi', url: '/', external: false },
+    { label: 'Legendary Sisters', url: '/article/sisters-unite', external: false }
+  ];
+}
