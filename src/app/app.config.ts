@@ -4,7 +4,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 
 import { DOMAIN_CONFIG } from './config/domain-config.token';
-import { DomainConfig } from './types/section';
+import { DomainConfig } from './Models/interfaces';
 
 const domainConfig: DomainConfig = {
   defaultSection: 'studiodoggebi',

@@ -1,17 +1,5 @@
 import { Injectable } from '@angular/core';
-
-export interface ArticleSummary {
-  slug: string;
-  title: string;
-  excerpt: string;
-  image: string;
-}
-
-export interface ArticleDetail extends ArticleSummary {
-  content: string;
-  published: string;
-  author?: string;
-}
+import { ArticleDetail, ArticleSummary } from 'app/Models/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleService {

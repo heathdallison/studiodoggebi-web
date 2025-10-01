@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService, ArticleSummary } from '@services/article.service';
+import { ArticleService} from '@services/article.service';
 import { LayoutInfoService } from '@services/layout-info.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ArticleSummary } from 'app/Models/interfaces';
 
 @Component({
     selector: 'sd-article-grid',

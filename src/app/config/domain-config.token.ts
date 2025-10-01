@@ -1,4 +1,4 @@
 import { InjectionToken } from '@angular/core';
-import { DomainConfig } from '../types/section';
+import { DomainConfig } from '../Models/interfaces';
 
 export const DOMAIN_CONFIG = new InjectionToken<DomainConfig>('DOMAIN_CONFIG');

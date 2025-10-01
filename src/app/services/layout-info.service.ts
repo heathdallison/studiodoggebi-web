@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { DOMAIN_CONFIG } from '../config/domain-config.token';
-import { DomainConfig, SectionId } from '../types/section';
+import { DomainConfig, SectionId } from '../Models/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutInfoService {

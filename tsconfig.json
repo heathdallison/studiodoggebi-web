@@ -19,7 +19,7 @@
       "@services/*": ["app/services/*"],
       "@components/*": ["app/components/*"],
       "@config/*": ["app/config/*"],
-      "@types/*": ["app/types/*"],
+      "@models/*":   ["app/types/*"],   // <— rename this
       "@utils/*": ["app/utils/*"],
       "@styles/*": ["app/styles/*"]
     },

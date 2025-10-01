@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { ArticleService, ArticleDetail } from '@services/article.service';
+import { ArticleService } from '@services/article.service';
 import { LayoutInfoService } from '@services/layout-info.service';
+import { ArticleDetail } from 'app/Models/interfaces';
 imports: [CommonModule, RouterModule]
 
 @Component({

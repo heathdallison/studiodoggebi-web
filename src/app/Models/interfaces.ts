@@ -19,3 +19,23 @@ export interface DomainConfig {
   order: SectionId[];
   sections: Record<SectionId, SectionConfig>;
 }
+
+export interface ArticleSummary {
+  slug: string;
+  title: string;
+  excerpt: string;
+  image: string;
+}
+
+export interface ArticleDetail extends ArticleSummary {
+  content: string;
+  published: string;
+  author?: string;
+}
+
+export interface ContentItem {
+  id: string;
+  title: string;
+  thumbnail: string;  // URL (can be local asset for now)
+  etsyUrl: string;    // external link
+}
